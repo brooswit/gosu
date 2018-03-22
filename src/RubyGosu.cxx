@@ -5368,9 +5368,12 @@ _wrap_Font_draw(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg9 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg9 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -5512,9 +5515,12 @@ _wrap_Font_draw_rel(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg11 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg11 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -5648,9 +5654,12 @@ _wrap_Font_draw_rot(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg10 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg10 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -6353,9 +6362,12 @@ _wrap_Image_draw(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg8 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg8 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -6517,9 +6529,12 @@ _wrap_Image_draw_mod(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg11 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg11 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -6658,9 +6673,12 @@ _wrap_Image_draw_rot(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg11 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg11 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -6899,9 +6917,12 @@ _wrap_Image_draw_as_quad(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg15 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg15 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -10303,9 +10324,12 @@ _wrap_draw_line(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg8 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg8 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -10458,9 +10482,12 @@ _wrap_draw_triangle(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg11 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg11 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -10648,9 +10675,12 @@ _wrap_draw_quad(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg14 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg14 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }
@@ -10749,9 +10779,12 @@ _wrap_draw_rect(int argc, VALUE *argv, VALUE self) {
       else if (!strcmp(cstr, "multiply")) {
         arg7 = Gosu::AM_MULTIPLY;
       }
+      else if (!strcmp(cstr, "replace")) {
+        arg7 = Gosu::AM_REPLACE;
+      }
       else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-          ":multiply)");
+          ":multiply, :replace)");
       }
     }
   }

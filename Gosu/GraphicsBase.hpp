@@ -26,7 +26,9 @@ namespace Gosu
         //! to the old color's channels.
         AM_ADD,
         //! The color's channels will be multiplied with each other.
-        AM_MULTIPLY
+        AM_MULTIPLY,
+        //! The color will completly replace the current one.
+        AM_REPLACE
     };
     
     enum FontFlags

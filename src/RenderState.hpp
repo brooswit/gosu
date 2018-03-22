@@ -37,13 +37,16 @@ struct Gosu::RenderState
         }
     }
     
-    void apply_alpha_mode() const
+    void apply_blend_mode() const
     {
         if (mode == AM_ADD) {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE);
         }
         else if (mode == AM_MULTIPLY) {
             glBlendFunc(GL_DST_COLOR, GL_ZERO);
+        }
+        else if (mode == AM_REPLACE) {
+            glBlendFunc(GL_ONE, GL_ZERO);
         }
         else {
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -67,7 +70,7 @@ struct Gosu::RenderState
     {
         apply_texture();
         // TODO: No inner clip_rect yet - how would this work?!
-        apply_alpha_mode();
+        apply_blend_mode();
     }
     #endif
 };
@@ -100,7 +103,7 @@ class Gosu::RenderStateManager : private Gosu::RenderState
 public:
     RenderStateManager()
     {
-        apply_alpha_mode();
+        apply_blend_mode();
         // Preserve previous MV matrix
         glMatrixMode(GL_MODELVIEW);
         glPushMatrix();
@@ -181,7 +184,7 @@ public:
         if (new_mode == mode) return;
         
         mode = new_mode;
-        apply_alpha_mode();
+        apply_blend_mode();
     }
     
     // The cached values may have been messed with. Reset them again.
@@ -190,7 +193,7 @@ public:
         apply_texture();
         apply_transform();
         apply_clip_rect();
-        apply_alpha_mode();
+        apply_blend_mode();
     }
 };
 

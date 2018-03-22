@@ -60,9 +60,12 @@
     else if (!strcmp(cstr, "multiply")) {
         $1 = Gosu::AM_MULTIPLY;
     }
+    else if (!strcmp(cstr, "replace")) {
+        $1 = Gosu::AM_REPLACE;
+    }
     else {
         SWIG_exception_fail(SWIG_ValueError, "invalid alpha mode (expected one of :default, :add, "
-                            ":multiply)");
+                            ":multiply, :replace)");
     }
 }
 %typemap(in) Gosu::Alignment {
