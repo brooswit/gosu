@@ -101,6 +101,38 @@ class Gosu::Image
       from_text_without_window(*args)
     end
   end
+
+  alias _draw_rot draw_rot
+  def draw_rot(*args)
+    Gosu.deprecation_message("Image#draw_rot is deprecated in Gosu x.y, use draw with an options hash instead, see https://www.libgosu.org/rdoc/Gosu/Image.html.")
+    _draw_rot(*args)
+  end
+
+  alias _draw draw
+  def draw(x, y, z, *args)
+    if args.last.is_a?(Hash)
+      opts = args.pop
+      scale_x = args[0] || opts.fetch(:scale_x, 1)
+      scale_y = args[1] || opts.fetch(:scale_y, 1)
+      color   = args[2] || opts.fetch(:color, 0xff_ffffff)
+      mode    = args[3] || opts.fetch(:mode, :default)
+
+      # Make draw_rot obsolete as the params are bascially the same besides the rotation-specific values
+      angle = opts.fetch(:angle, nil)
+      if angle
+        center_x = opts.fetch(:center_x, 0.5)
+        center_y = opts.fetch(:center_y, 0.5)
+        _draw_rot(x, y, z, angle, center_x, center_y, scale_x, scale_y, color, mode)
+      else
+        _draw(x, y, z, scale_x, scale_y, color, mode)
+      end
+    else
+      # You could argue about this, because basically the underlying c++ lib needs a long parameter list, so why blaming someone liking the pain
+      # and not use the more comfortable/ruby-ish named-parameters/options hash instead and if your really need all parameters you're writing more code due to the keywords.
+      Gosu.deprecation_message("Image#draw uses an options hash in Gosu x.y, see https://www.libgosu.org/rdoc/Gosu/Image.html.") unless args.empty?
+      _draw(x, y, z,*args)
+    end
+  end
 end
 
 # No need to pass a Window to Sample.
