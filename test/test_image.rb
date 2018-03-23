@@ -142,9 +142,9 @@ class TestImageIO < Minitest::Test
 
   #----------- other instance methods
 
-  def gl_tex_info
+  def test_gl_tex_info
     gti = Gosu::Image.new(media_path('triangle-25.bmp')).gl_tex_info
-    assert gti.is_a?(GLTexInfo)
+    assert gti.is_a?(Gosu::GLTexInfo)
   end
 
   def test_insert
