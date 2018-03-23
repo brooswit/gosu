@@ -74,6 +74,11 @@ class TestImageIO < Minitest::Test
     assert_screenshot_matches win, 'trintrang.png'
   end
 
+  def test_from_blob
+    img = Gosu::Image.new(media_path('triangle-25.bmp'))
+    assert_equal img.to_blob, Gosu::Image.from_blob(img.to_blob, 25, 25).to_blob
+  end
+
   #----------- Drawing an image
 
   def test_draw_with_opts

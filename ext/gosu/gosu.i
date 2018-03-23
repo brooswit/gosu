@@ -661,6 +661,15 @@ namespace Gosu
         std::unique_ptr<Gosu::ImageData> image_data = $self->data().subimage(x, y, w, h);
         return image_data.get() ? new Gosu::Image(std::move(image_data)) : nullptr;
     }
+
+    %newobject from_blob;
+    static Gosu::Image* from_blob(const std::string& blob, int width, int height)
+    {
+        Gosu::Bitmap bitmap(width, height);
+        memcpy(bitmap.data(), &blob[0], width * height * 4);
+
+        return new Gosu::Image(bitmap);
+    }
     
     %newobject from_text;
     static Gosu::Image* from_text(const std::string& text, int font_height, VALUE options = 0)

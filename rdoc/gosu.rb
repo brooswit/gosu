@@ -390,6 +390,18 @@ module Gosu
     # @return [Image?] an image that represents a portion of the containing image
     def subimage(left, top, width, height); end
 
+    ##
+    # Returns an image from a binary string of packed RGBA values. (e.g. from (Image#to_blob))
+    #
+    # @param blob [String] a string of any length (preferably width * height * 4)
+    # @param width [Ingeger] the width of the resulting image
+    # @param height [Integer] the height of the resulting image
+    #
+    # @return [Gosu::Image]
+    #
+    # @see Image#to_blob
+    def self.from_text(blob, width, height); end
+
     # @!endgroup
 
     # @!group Drawing an image

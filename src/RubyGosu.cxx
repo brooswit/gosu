@@ -2888,6 +2888,12 @@ SWIGINTERN Gosu::Image *Gosu_Image_subimage(Gosu::Image *self,int x,int y,int w,
         std::unique_ptr<Gosu::ImageData> image_data = self->data().subimage(x, y, w, h);
         return image_data.get() ? new Gosu::Image(std::move(image_data)) : nullptr;
     }
+SWIGINTERN Gosu::Image *Gosu_Image_from_blob(std::string const &blob,int width,int height){
+        Gosu::Bitmap bitmap(width, height);
+        memcpy(bitmap.data(), &blob[0], width * height * 4);
+
+        return new Gosu::Image(bitmap);
+    }
 SWIGINTERN Gosu::Image *Gosu_Image_from_text(std::string const &text,int font_height,VALUE options=0){
         std::string font = Gosu::default_font_name();
         int width = 0;
@@ -7030,6 +7036,60 @@ _wrap_Image_subimage(int argc, VALUE *argv, VALUE self) {
   vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Gosu__Image, SWIG_POINTER_OWN |  0 );
   return vresult;
 fail:
+  return Qnil;
+}
+
+
+SWIGINTERN VALUE
+_wrap_Image_from_blob(int argc, VALUE *argv, VALUE self) {
+  std::string *arg1 = 0 ;
+  int arg2 ;
+  int arg3 ;
+  int res1 = SWIG_OLDOBJ ;
+  int val2 ;
+  int ecode2 = 0 ;
+  int val3 ;
+  int ecode3 = 0 ;
+  Gosu::Image *result = 0 ;
+  VALUE vresult = Qnil;
+  
+  if ((argc < 3) || (argc > 3)) {
+    rb_raise(rb_eArgError, "wrong # of arguments(%d for 3)",argc); SWIG_fail;
+  }
+  {
+    std::string *ptr = (std::string *)0;
+    res1 = SWIG_AsPtr_std_string(argv[0], &ptr);
+    if (!SWIG_IsOK(res1)) {
+      SWIG_exception_fail(SWIG_ArgError(res1), Ruby_Format_TypeError( "", "std::string const &","Gosu_Image_from_blob", 1, argv[0] )); 
+    }
+    if (!ptr) {
+      SWIG_exception_fail(SWIG_ValueError, Ruby_Format_TypeError("invalid null reference ", "std::string const &","Gosu_Image_from_blob", 1, argv[0])); 
+    }
+    arg1 = ptr;
+  }
+  ecode2 = SWIG_AsVal_int(argv[1], &val2);
+  if (!SWIG_IsOK(ecode2)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode2), Ruby_Format_TypeError( "", "int","Gosu_Image_from_blob", 2, argv[1] ));
+  } 
+  arg2 = static_cast< int >(val2);
+  ecode3 = SWIG_AsVal_int(argv[2], &val3);
+  if (!SWIG_IsOK(ecode3)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode3), Ruby_Format_TypeError( "", "int","Gosu_Image_from_blob", 3, argv[2] ));
+  } 
+  arg3 = static_cast< int >(val3);
+  {
+    try {
+      result = (Gosu::Image *)Gosu_Image_from_blob((std::string const &)*arg1,arg2,arg3);
+    }
+    catch (const std::exception& e) {
+      SWIG_exception(SWIG_RuntimeError, e.what());
+    }
+  }
+  vresult = SWIG_NewPointerObj(SWIG_as_voidptr(result), SWIGTYPE_p_Gosu__Image, SWIG_POINTER_OWN |  0 );
+  if (SWIG_IsNewObj(res1)) delete arg1;
+  return vresult;
+fail:
+  if (SWIG_IsNewObj(res1)) delete arg1;
   return Qnil;
 }
 
@@ -11835,6 +11895,7 @@ SWIGEXPORT void Init_gosu(void) {
   rb_define_method(SwigClassImage.klass, "draw_as_quad", VALUEFUNC(_wrap_Image_draw_as_quad), -1);
   rb_define_method(SwigClassImage.klass, "gl_tex_info", VALUEFUNC(_wrap_Image_gl_tex_info), -1);
   rb_define_method(SwigClassImage.klass, "subimage", VALUEFUNC(_wrap_Image_subimage), -1);
+  rb_define_singleton_method(SwigClassImage.klass, "from_blob", VALUEFUNC(_wrap_Image_from_blob), -1);
   rb_define_singleton_method(SwigClassImage.klass, "from_text", VALUEFUNC(_wrap_Image_from_text), -1);
   rb_define_singleton_method(SwigClassImage.klass, "load_tiles", VALUEFUNC(_wrap_Image_load_tiles), -1);
   rb_define_method(SwigClassImage.klass, "to_blob", VALUEFUNC(_wrap_Image_to_blob), -1);
